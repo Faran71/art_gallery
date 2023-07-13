@@ -1,0 +1,2 @@
+public class TestGallery {
+}
