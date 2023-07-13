@@ -9,7 +9,7 @@ public class TestCustomer {
 
     @BeforeEach
     public void setUp(){
-        customer = new Customer("Steve",5000000);
+        customer = new Customer("Zsolt",500);
     }
 
     @Test
@@ -19,13 +19,20 @@ public class TestCustomer {
 
     @Test
     public void canGetWallet(){
-        assertThat(customer.getWallet()).isEqualTo(5000000);
+        assertThat(customer.getWallet()).isEqualTo(500);
     }
 
     @Test
-    public void canSetWallet(){
-        customer.setWallet(500);
-        assertThat(customer.getWallet()).isEqualTo(500);
+    public void canAddToWallet(){
+        customer.addWallet(500);;
+        assertThat(customer.getWallet()).isEqualTo(1000);
+    }
+
+    @Test
+    public void canRemoveWallet(){
+        customer.removeWallet(100);
+        assertThat(customer.getWallet()).isEqualTo(400);
+
     }
 
 }

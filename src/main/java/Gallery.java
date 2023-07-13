@@ -3,13 +3,14 @@ import java.util.ArrayList;
 public class Gallery {
 
     private String name;
-    private int till;
+    private double till;
     private ArrayList<Artwork> stock;
-    private ArrayList<Customer> customers;
+    private Customer customer;
 
-    public Gallery(String inputName, int inputTill){
+    public Gallery(String inputName){
         this.name = inputName;
-        this.till = inputTill;
+        this.till = 0;
+
         Artwork artworkOne = new Artwork("Mona Lisa","Da Vinci",50);
         Artwork artworkTwo = new Artwork("Head of a Women","Da Vinci",60);
         Artwork artworkThree = new Artwork("Starry Night","Da Vinci", 70);
@@ -17,10 +18,9 @@ public class Gallery {
         this.stock.add(artworkOne);
         this.stock.add(artworkTwo);
         this.stock.add(artworkThree);
-        Customer customerOne = new Customer("Ed",500);
-        Customer customerTwo = new Customer("Anna",1000);
-        this.customers.add(customerOne);
-        this.customers.add(customerTwo);
+
+        customer = new Customer("Ed",500);
+        
     }
 
 
@@ -31,15 +31,42 @@ public class Gallery {
         this.name = newName;
     }
 
-    public int getTill() {
+    public double getTill() {
         return till;
     }
-    public void setTill(int newTill) {
-        this.till = newTill;
+    public void addToTill(double addTill) {
+        this.till += addTill;
     }
+    public void removeFromTill(double removeTill){
+        this.till -= removeTill;
+    }
+
 
     public ArrayList<Artwork> getStock(){
         return this.stock;
     }
+
+    public void addArtwork(Artwork artworkAddition){
+        this.stock.add(artworkAddition);
+    }
+    public void removeArtwork(int index){
+        this.stock.remove(index);
+    }
+    public void sellArtwork(String artTitle){
+        double artworkPrice = 0;
+        for (Artwork artwork : this.stock){
+            if (artwork.getTitle() == artTitle){
+                artworkPrice = artwork.getPrice();
+            }
+        }
+        
+        customer.removeWallet(artworkPrice);
+        this.till += artworkPrice;
+    }
+    public double getCustomerWallet(){
+        return customer.getWallet();
+    }
+
+
 
 }

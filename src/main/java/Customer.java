@@ -1,5 +1,5 @@
 public class Customer{
-    
+
     private String name;
     private double wallet;
 
@@ -15,9 +15,12 @@ public class Customer{
         return this.wallet;
     }
 
-    public void setWallet(double newWallet){
-        this.wallet = newWallet;
+    public void addWallet(double newAddWallet){
+        this.wallet += newAddWallet;
     }
-    
-    
+    public void removeWallet(double newRemoveWallet){
+        this.wallet -= newRemoveWallet;
+    }
+
+
 }
